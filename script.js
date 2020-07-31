@@ -52,6 +52,13 @@ $(document).ready(function() {
         $("#forecast").empty();
 
         // create html content for current weather
+        var newLi = $("<li>");
+        newLi.text(data.//temperature);
+        newLi.text(data.//description);
+        newLi.text(data.//humidity);
+        newLi.text(data.//wind);
+        // etc.
+        $("#today").append(newLi);
 
         // merge and add to page
         
