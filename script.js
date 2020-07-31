@@ -53,15 +53,16 @@ $(document).ready(function() {
 
         // create html content for current weather
         var newLi = $("<li>");
-        newLi.text(data.//temperature);
-        newLi.text(data.//description);
-        newLi.text(data.//humidity);
-        newLi.text(data.//wind);
+        newLi.text(data.main.temp); //temperature
+        newLi.text(data.weather.description);
+        newLi.text(data.main.humidity);
+        newLi.text(data.wind.speed);
         // etc.
-        $("#today").append(newLi);
+        
 
         // merge and add to page
-        
+        $("#today").append(newLi);
+
         // call follow-up api endpoints
         getForecast(searchValue);
         getUVIndex(data.coord.lat, data.coord.lon);
