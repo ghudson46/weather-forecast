@@ -1,3 +1,18 @@
+* {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+h1 {
+  -webkit-text-stroke: 1px black;
+}
+
+h5 {
+  text-align: center;
+}
 body {
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.form-inline, .form-group {
+  margin-left: 38vw;
 }
