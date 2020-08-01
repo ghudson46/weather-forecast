@@ -1,143 +1,108 @@
 $(document).ready(function() {
 
+  var searchValue = $("#search-value").val();
+  //  SEARCH BAR
+
   // when search button is clicked, the user input is captured
   $("#search-button").on("click", function() {
     event.preventDefault();
-    var city = $("#search-value").val();
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + imperialUnits + apiKey;
-    var apiKey = "&appid=09d177a650c7345f4f5eefa977756f24";
-    var imperialUnits = "&units=imperial";
-
-    if (city != '') {
-
-      $.ajax({
-        url: queryURL,
-        type: 'GET',
-        dataType: "json",
-        success: function(data) {
-          console.log(data);
-        }
-
-      });
-
-    } else {
-      $("#error").html('field cannot be empty');
-    }
-
-    city.val(' ');
-  })
-
-//     // clear input box on submit click
-//     $("#search-value").val(" ");
-
-//     // clear input box when clicked
-
-
-    
-//   });
-
-//   searchWeather(searchValue);
-
-//   $(".history").on("click", "li", function() {
-//     searchWeather($(this).text());
-//   });
-
-//   function makeRow(text) {
-//     //creates a list item and adds class names and text
-//     var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
-//     // appends the list item to the history unordered list
-//     $(".history").append(li);
-//   }
-
-//   //global variabals for URL
- 
-
-//   function searchWeather(searchValue) {
-//     $.ajax({
-//       method: "GET",
-//       url: queryURL,
-//       dataType: "json",
-//       success: function(data) {
-//         // create history link for this search
-//         if (history.indexOf(searchValue) === -1) {
-//           history.push(searchValue);
-//           window.localStorage.setItem("history", JSON.stringify(history));
-    
-//           makeRow(searchValue);
-//            $("#today").empty();
-//            $("#forecast").empty();
-
-//         // create html content for current weather
-//         var weatherDiv = $("<div class='weather-today'>");
-
-//         var temp = $("<li>").text(data.main.temp);
-//         weatherDiv.append(temp);
-
-//         var humidity = $("<li>").text(data.main.humidity);
-//         console.log('there is ' + humidity + ' % humidity');
-        
-      
-//         // clear any old content
-       
-        
-        
-
-//         // merge and add to page
-      
-
-//         // call follow-up api endpoints
-//         getForecast(searchValue);
-//         getUVIndex(data.coord.lat, data.coord.lon);
-//       }
-//     }
-//   })
+    var searchValue = $("#search-value").val();
+    // clears search box after submitted
+    $("#search-value").val('');
+    //clear input when clicking inside box
+    $("input:text").click(function() {
+      $(this).val('');
+      // clears todays forecast
+      $("#today").empty();
+      // clears 5 day forecast
+      $("#forecast").empty();
+    });
+    searchWeather(searchValue);
   
-//   function getForecast(searchValue) {
-//     $.ajax({
-//       type: "",
-//       url: "" + searchValue + "",
-//       dataType: "json",
-//       success: function(data) {
-//         // overwrite any existing content with title and empty row
+  });
 
-//         // loop over all forecasts (by 3-hour increments)
-//         for (var i = 0; i < data.list.length; i++) {
-//           // only look at forecasts around 3:00pm
-//           if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-//             // create html elements for a bootstrap card
-            
+  //  HISTORY SECTION
 
-//             // merge together and put on page
-//           }
-//         }
-//       }
-//     });
-//   }
+  // history
+  $(".history").on("click", "li", function() {
+    searchWeather($(this).text());
+  });
 
-//   function getUVIndex(lat, lon) {
-//     $.ajax({
-//       type: "",
-//       url: "" + lat + "&lon=" + lon,
-//       dataType: "json",
-//       success: function(data) {
-//         var uv = $("<p>").text("UV Index: ");
-//         var btn = $("<span>").addClass("btn btn-sm").text(data.value);
-        
-//         // change color depending on uv value
-        
-//         $("#today .card-body").append(uv.append(btn));
-//       }
-//     });
-//   }
+  // creates history list
+  function makeRow(text) {
+    // creates a list with class list-group-item and action and adds the parameter text
+    var li =$("<li>").addClass("list-group-item list-group-item-action").text(text);
+    // append to history section
+    $(".history").append(li);
+  }
 
-//   // get current history, if any
-//   var history = JSON.parse(window.localStorage.getItem("history")) || [];
+  // creates weather URL
+  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchValue + imperialUnits + apiKey;
 
-//   if (history.length > 0) {
-//     searchWeather(history[history.length-1]);
-//   }
+  // my personal API key for open weather API
+  var apiKey = "&appid=624cbb927ded664042da9cb2c49976f8";
 
-//   for (var i = 0; i < history.length; i++) {
-//     makeRow(history[i]);
-//   }
-// };
+  // gives you the data from API in farenheit and not kelvin or celcius
+  var imperialUnits = "&units=imperial";
+
+  //  TODAY'S WEATHER
+  function searchWeather(searchValue) {
+    $.ajax({
+      url: queryURL,
+      type: 'GET',
+      dataType: 'json'
+    }).then(function (response) {
+      console.log(response);
+      // create history link for this particular search
+      if (history.indexOf(searchValue) === -1) {
+        history.pushState(searchValue);
+        window.localStorage.setItem("history", JSON.stringify(history));
+        makeRow(searchValue);
+      }
+      // clear old content
+      $("#today").empty();
+      $("#forecast").empty();
+
+      // time conversion 
+      var sec = data.dt;
+      var date = new Date(sec * 1000);
+      var timeStr = date.toLocaleTimeString();
+      var dateStr = date.toLocaleTimeString();
+      // convert day of the week
+      var dayStr = date.getUTCDay();
+      var weekday = new Array(7);
+      weekday[0] = "Sunday";
+      weekday[1] = "Monday";
+      weekday[2] = "Tuesday";
+      weekday[3] = "Wednesday";
+      weekday[4] = "Thursday";
+      weekday[5] = "Friday";
+      weekday[6] = "Suturday";
+      var weekdayStr = weekday[dayStr];
+
+      // add current weather data into HTML
+      var forecastList = $("<div>").attr("id", "forecast-container");
+      var liName = $("<div>").attr("id", "name-div");
+      liName.text(data.name + " (" + dateStr + ") ");
+
+      var liImg = $("div").attr("id", "img-div");
+      var icon = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+      liImg.append(icon);
+
+      var liTemp = $("<div>").attr("id", "temp-div");
+      liTemp.text("Temperature: " + data.main.temp + " °F");
+
+      var liTemp = $("<div>").attr("id", "temp-div");
+      liTemp.text("Temperature: " + data.main.temp + " °F");
+
+      var liTemp = $("<div>").attr("id", "temp-div");
+      liTemp.text("Temperature: " + data.main.temp + " °F");
+      
+      var liUVIndex = $("<div>").attr("id", "index-div");
+
+      forecastList.append(liName, liImg, liTemp, liHumidity, liWindSpeed, liUVIndex);
+    })
+  }
+
+});
+ 
