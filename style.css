@@ -13,7 +13,49 @@ body {
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 }
 
+img {
+  margin: 0 auto;
+  height: 100px;
+  width: 100px;
+}
 .form-inline, .form-group {
   margin-left: 40vw;
 }
 
+.card {
+  float: right;
+  padding-top: 20px;
+  margin: 20px 0px 0px 10px;
+
+}
+
+.card-title {
+  text-align: center;
+}
+
+
+.list-group {
+  margin-left: 39vw;
+  text-align: center;
+  width: 250px;
+  margin-bottom: 10px;
+}
+
+#five-date {
+  font-size: 14px;
+}
+
+#forecast-container {
+  color: white;
+}
+
+#forecast {
+  justify-content: center;
+  align-items: center;
+}
+
+#five-title {
+  font-size: 36px;
+  color: white !important;
+  margin-left: 40vw;
+}
