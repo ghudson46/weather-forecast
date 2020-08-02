@@ -91,7 +91,7 @@ $(document).ready(function () {
 				var forecastUl = $("<div>", { id: "forecast-container" });
 
 				var liName = $("<div>", { id: "name-div" });
-				liName.text(data.name + " (" + datestr + ") ");
+				liName.text(data.name);
 
 				var liImg = $("<div>", { id: "img-div" });
       

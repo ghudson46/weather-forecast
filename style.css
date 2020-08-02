@@ -2,60 +2,69 @@
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-h1 {
-  -webkit-text-stroke: 1px black;
+header {
+  background-image: url("https://openweathermap.org/themes/openweathermap/assets/img/new-history-forecast-bulk.png");
+  height: 200px;
 }
 
-h5 {
-  text-align: center;
-}
 body {
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+html, body {
+  display: flex;
+	height: 100%;
+	flex-direction: column;
+  margin: 0;
 }
 
 img {
-  margin: 0 auto;
-  height: 100px;
-  width: 100px;
-}
-.form-inline, .form-group {
-  margin-left: 40vw;
+  height: 150px;
+  width: 150px;
 }
 
 .card {
-  float: right;
-  padding-top: 20px;
-  margin: 20px 0px 0px 10px;
-
+  display: block;
+  padding: 20px 10px;
+  margin: 20px 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 250px;
 }
 
 .card-title {
+  margin: 0;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.col-lg-12 {
+  display: block;
   text-align: center;
 }
 
-
-.list-group {
-  margin-left: 39vw;
+.form-inline {
+  display: block;
   text-align: center;
-  width: 250px;
-  margin-bottom: 10px;
 }
 
-#five-date {
-  font-size: 14px;
-}
-
-#forecast-container {
+#today {
   color: white;
-}
-
-#forecast {
-  justify-content: center;
-  align-items: center;
+  display: block;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 #five-title {
+  color: white;
+  text-align: center;
   font-size: 36px;
-  color: white !important;
-  margin-left: 40vw;
+}
+
+#name-div {
+  font-size: 48px;
 }
