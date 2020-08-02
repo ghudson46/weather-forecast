@@ -90,3 +90,21 @@ img {
 #name-div {
   font-size: 48px;
 }
+
+@media screen and (max-width: 600px) {
+	header,
+	.row {
+		width: 100% !important;
+	}
+	.card-container {
+		flex-direction: column !important;
+		width: 100%;
+	}
+	.btn-lg {
+		font-size: 10px !important;
+	}
+	.h1,
+	h1 {
+		font-size: 3.5rem !important;
+	}
+}
