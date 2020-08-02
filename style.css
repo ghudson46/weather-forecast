@@ -2,9 +2,21 @@
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+h1, .card, #today, #forecast {
+  -webkit-text-stroke: 0.5px navy;
+}
+
 header {
   background-image: url("https://openweathermap.org/themes/openweathermap/assets/img/new-history-forecast-bulk.png");
   height: 200px;
+}
+
+h1 {
+  font-size: 54px;
+}
+
+h5, ul, li {
+  color: navy;
 }
 
 body {
@@ -25,9 +37,11 @@ img {
 }
 
 .card {
+  color: white;
+  background-color: lightslategray;
   display: block;
   padding: 20px 10px;
-  margin: 20px 10px;
+  margin: 30px 10px;
   border-radius: 10px;
   text-align: center;
   width: 250px;
