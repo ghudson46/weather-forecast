@@ -94,11 +94,11 @@ img {
 @media screen and (max-width: 600px) {
 	header,
 	.row {
-		width: 100% !important;
+		width: 100vw !important;
 	}
 	.card-container {
 		flex-direction: column !important;
-		width: 100%;
+		width: 100vw;
 	}
 	.btn-lg {
 		font-size: 10px !important;
