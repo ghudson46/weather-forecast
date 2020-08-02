@@ -15,7 +15,11 @@ h1 {
   font-size: 54px;
 }
 
-h5, ul, li {
+h4 {
+  font-size: 36px;
+}
+
+.mt-1, ul, li {
   color: navy;
 }
 
@@ -54,6 +58,10 @@ img {
 .card-container {
   display: flex;
   flex-direction: row;
+}
+
+.card-body {
+  padding: 0;
 }
 
 .col-lg-12 {
