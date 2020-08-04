@@ -99,7 +99,10 @@ img {
 	.card-container {
 		flex-direction: column !important;
 		width: 100vw;
-	}
+  }
+  .card {
+    margin-left: 110px !important;
+  }
 	.btn-lg {
 		font-size: 10px !important;
 	}
