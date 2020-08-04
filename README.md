@@ -36,20 +36,20 @@ THEN I am presented with the last searched city forecast
 ## Functionality 
 
 When the user opens the site, they are prompted to enter the name of a city, in order to see the weather in that location
-[landing page](img/landingpage.png)
+![landing page](img/landingpage.png)
 
 When the user enters a city, the input value is taken and entered into the API call for the open weather map API. The response to that call is used to get retrieve specific data, like the temperature, the humidity, the wind speed, and the UV index. As well as the current weather info, the API call is used to show the user a 5 day forecast for that area. The temperatures shown in the 5 day forecast are the projected temperature at 3PM.
 
-[forecast](img/forecast.png)
+![foreceast](img/forecast.png)
 
 The weather data is stored in the browser's local storage and is easily accessed when the user clicks on the city's name in the search history section. Each time the user searches a new city, it is added to the search history in their browser, so they can cycle through multiple locations.
 
-[new search](img/newsearch.png)
-[history](img/history.png)
+![new search](img/newsearch.png)
+![history](img/history.png)
 
 When the user no longer has a need for their old searches, they can click on the clear search history button, which removes the old weather data from the local storage and clears the results from the user's screen
 
-[clear](img/clear.png)
+![clear](img/clear.png)
 
 ## links
 [Live application](https://ghudson46.github.io/weather-forecast)
