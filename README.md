@@ -40,7 +40,7 @@ When the user opens the site, they are prompted to enter the name of a city, in 
 
 When the user enters a city, the input value is taken and entered into the API call for the open weather map API. The response to that call is used to get retrieve specific data, like the temperature, the humidity, the wind speed, and the UV index. As well as the current weather info, the API call is used to show the user a 5 day forecast for that area. The temperatures shown in the 5 day forecast are the projected temperature at 3PM.
 
-[forecast](img/forecast.png)
+(img/forecast.png)
 
 The weather data is stored in the browser's local storage and is easily accessed when the user clicks on the city's name in the search history section. Each time the user searches a new city, it is added to the search history in their browser, so they can cycle through multiple locations.
 
