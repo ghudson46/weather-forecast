@@ -20,22 +20,27 @@
   <div class="container-fluid">
     <div class="row">
       <aside class="col-lg-12 bg-light">
+        <!-- prompt and input to search for a specific city's forecast -->
         <h5 class="mt-1">Search for a City:</h5>
         <div class="form-inline form-group">
           <input class="form-control" type="text" id="search-value" />
           <button class="btn btn-primary" id="search-button"> <i class="fa fa-search"></i> </button>
           <br>
           <br>
+          <!-- clear button that erases data from local storage and removes it from the user's screen -->
           <button class="btn btn-primary" id="clear-button">Clear Search History  <i class="fa fa-trash"></i> </button>
         <div id="weather-today"></div>
         <div id="error"></div>
         </div>
 
+        <!-- a list that stores the search history -->
         <ul class="list-group history"></ul>
       </aside>
 
       <div class="col-lg-12">
+        <!-- a div to store the results of the API call for today's weather -->
         <div id="today" class="mt-3"></div>
+        <!-- a div to store the results of the API call for the 5 day forecast -->
         <div id="forecast" class="mt-3"></div>
       </div>
     </div>

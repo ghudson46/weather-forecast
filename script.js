@@ -1,6 +1,4 @@
 $(document).ready(function () {
-// search bar
-
 	// when search btn is clicked capture the value entered
 	$("#search-button").on("click", function () {
 		event.preventDefault();
@@ -23,17 +21,19 @@ $(document).ready(function () {
 
 	// History
 	$(".history").on("click", "li", function () {
+		// runs the searchWeather function from before, using the value of the text inside the history list item
 		searchWeather($(this).text());
 	});
 
 	// Search History List
 	function makeRow(text) {
+		// creates a new list item
 		var li = $("<li>")
-			// add class & name
+			// add class & class names
 			.addClass("list-group-item list-group-item-action")
 			// add text
 			.text(text);
-		// append
+		// append to the history list
 		$(".history").append(li);
 	}
 
@@ -56,14 +56,13 @@ $(document).ready(function () {
 				imperialUnits +
 				apiOpenWeatherMap,
 			dataType: "json",
-			success: function (data) {
+			success: function (data) { // callback function for a successful API call 
 				
 				// create history link for this search
 				if (history.indexOf(searchValue) === -1) {
 					history.push(searchValue);
-					window.localStorage.setItem("history", JSON.stringify(history));
-					console.log("if History:", history);
-					makeRow(searchValue);
+					window.localStorage.setItem("history", JSON.stringify(history)); // stores search value in local storage
+					makeRow(searchValue); // makes a new row/li in the history section
 				}
 				// clear any old content
 				$("#today").empty();
@@ -88,31 +87,31 @@ $(document).ready(function () {
 				var weekdaystr = weekday[daystr];
 
 				// create html content for current weather
-				var forecastUl = $("<div>", { id: "forecast-container" });
+				var forecastUl = $("<div>", { id: "forecast-container" }); //creates a list to store the forecast in
 
-				var liName = $("<div>", { id: "name-div" });
+				var liName = $("<div>", { id: "name-div" }); // creates list items for each set of data in the forecast
 				liName.text(data.name);
 
-				var liImg = $("<div>", { id: "img-div" });
+				var liImg = $("<div>", { id: "img-div" }); //creates a div to store the image for each type of weather
       
         // create icon
 				var iconImg = $("<img>");
 				iconImg.attr(
 					"src",
-					"https://openweathermap.org/img/w/" + data.weather[0].icon + ".png",
+					"https://openweathermap.org/img/w/" + data.weather[0].icon + ".png", // selects the icon to match the weather
 				);
 				liImg.append(iconImg);
 
-				var liTemp = $("<div>", { id: "temp-div" });
+				var liTemp = $("<div>", { id: "temp-div" }); // creates a list item for temperature
 				liTemp.text("Temperature: " + data.main.temp + " °F");
 
-				var liHumidity = $("<div>", { id: "humid-div" });
+				var liHumidity = $("<div>", { id: "humid-div" }); // creates a list item for humidity
 				liHumidity.text("Humidity: " + data.main.humidity + "%");
 
-				var liWindSpeed = $("<div>", { id: "speed-div" });
+				var liWindSpeed = $("<div>", { id: "speed-div" }); // creates a list item for wind speed 
 				liWindSpeed.text("Wind Speed: " + data.wind.speed + " MPH");
 
-				var liUVIndex = $("<div>", { id: "index-div" });
+				var liUVIndex = $("<div>", { id: "index-div" }); // creates a list item for UV index 
 
 				forecastUl.append(
 					liName,
@@ -124,7 +123,7 @@ $(document).ready(function () {
 				);
 
 				// merge and add to page
-				$("#today").append(forecastUl);
+				$("#today").append(forecastUl); // adds the current forecast to the div with id "today"
 
 				// call follow-up api endpoints
 				getForecast(searchValue);
@@ -132,7 +131,7 @@ $(document).ready(function () {
 				getUVIndex(data.coord.lat, data.coord.lon);
 	
 			},
-			error: function (xhr, status, error) {
+			error: function (xhr, status, error) { // callback function if API call is unssuccessful
 				alert(
 					"Result: " +
 						status +
@@ -159,7 +158,7 @@ $(document).ready(function () {
 				imperialUnits +
 				apiOpenWeatherMap,
 			dataType: "json",
-			success: function (data) {
+			success: function (data) { // callback function for successful API call
 				// overwrite any existing content with title and empty row
 				$("#forecast").empty();
 
@@ -245,7 +244,7 @@ $(document).ready(function () {
 						});
 						fiveHumidity.text("Humidity: " + data.list[i].main.humidity + "%");
 
-						// the next 5 lines are where my problem is...
+						// appends the day, date, icon, temp, and humidity to the card
 						fiveCard.append(
 							fiveDay,
 							fiveDate,
@@ -265,7 +264,7 @@ $(document).ready(function () {
 				// Append Forecast Title and Container
 				$("#forecast").append(fiveTitle, fiveContent);
 			},
-			error: function (xhr, status, error) {
+			error: function (xhr, status, error) { // callback function for unsuccessful call
 				alert(
 					"Result: " +
 						status +
@@ -295,7 +294,7 @@ $(document).ready(function () {
 			success: function (data) {
 				// Find UV Index
 				var uv = data[0].value;
-				// uv text ro replace placeholder
+				// uv text to replace placeholder
 				var uvText = $("<p>").text("UV Index: ");
 				// Make UV btn
 				var btn = $("<span>").addClass("btn btn-sm").text(data[0].value);
@@ -322,10 +321,10 @@ $(document).ready(function () {
 					btn.css("color", "white");
 					btn.css("background-color", "darkred");
 				}
-				// need to append btn and add to #index-div
+				// adds UV index to the div with id today and index-div
 				$("#today #index-div").append(uvText.append(btn));
 			},
-			error: function (xhr, status, error) {
+			error: function (xhr, status, error) { //callback function for unsuccessful API call
 				alert(
 					"Result: " +
 						status +
@@ -341,7 +340,7 @@ $(document).ready(function () {
 	}
 
 	// get current history
-	var history = JSON.parse(window.localStorage.getItem("history")) || [];
+	var history = JSON.parse(window.localStorage.getItem("history")) || []; // gets data from local storage and uses parse to change it back grom a string
 
 	if (history.length > 0) {
 		searchWeather(history[history.length - 1]);
@@ -351,6 +350,8 @@ $(document).ready(function () {
 		makeRow(history[i]);
 	}
 });
+
+// clears local storage and empties today and forecast divs
 
 $("#clear-button").on("click", function () {
 	console.clear();
