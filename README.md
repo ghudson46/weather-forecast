@@ -51,7 +51,20 @@ When the user no longer has a need for their old searches, they can click on the
 
 ![clear](img/clear.png)
 
+## Technology used
+HTML
+CSS
+jquery
+javascript
+
 ## links
 [Live application](https://ghudson46.github.io/weather-forecast)
 [github repo](https://github.com/ghudson46/weather-forecast)
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## contact info
+email: garrett.hudson46@gmail.com
+phone: (919) 606-6599
 
